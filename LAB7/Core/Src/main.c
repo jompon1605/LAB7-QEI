@@ -422,9 +422,9 @@ static void MX_GPIO_Init(void)
 #define  MAX_ENCODER_PERIOD 3072
 uint32_t EncoderNowPosition;
 
-float Kp = 0;
-float Ki = 0;
-float Kd = 0;
+float Kp = 80; //80
+float Ki = 0.3; //0.3
+float Kd = 0.5; //0.05
 
 float EncoderVelocity_Update()
 {

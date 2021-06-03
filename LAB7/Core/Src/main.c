@@ -51,7 +51,7 @@ uint64_t _micros = 0;
 float EncoderVel = 0;
 float MotorRPM = 0;
 uint64_t Timestamp_Encoder = 0;
-int PWMOut = 3000;
+int PWMOut = 0;
 int InputRPM = 0;
 /* USER CODE END PV */
 
@@ -423,8 +423,8 @@ static void MX_GPIO_Init(void)
 uint32_t EncoderNowPosition;
 
 float Kp = 80; //80
-float Ki = 0.3; //0.3
-float Kd = 0.5; //0.05
+float Ki = 0.5; //0.5
+float Kd = 0.1; //0.05
 
 float EncoderVelocity_Update()
 {
@@ -465,7 +465,13 @@ float EncoderVelocity_Update()
 void RunMotor()
 {
 	PWMControl(InputRPM);
-	if(PWMOut > 0)
+	if (InputRPM == 0)
+	{
+		PWMOut = 0;
+		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, 0);
+		__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
+	}
+	else if(PWMOut > 0)
 	{
 		if(PWMOut > 10000)
 		{

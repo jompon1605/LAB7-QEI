@@ -133,7 +133,7 @@ int main(void)
 
 		//Add LPF?
 
-		if (micros() - Timestamp_Encoder >= 1000) //10kHz
+		if (micros() - Timestamp_Encoder >= 1000) //1000uS
 		{
 //			__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_1, PWMOut);
 //			__HAL_TIM_SET_COMPARE(&htim3, TIM_CHANNEL_2, 0);
